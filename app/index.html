@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Poster Studio — fan-made cover art maker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">VP</span>
+    <div>
+      <h1>Vice Poster Studio</h1>
+      <p>Fan-made poster collage maker — a style tribute, not affiliated with any game publisher.</p>
+    </div>
+  </div>
+  <div class="export-box">
+    <label>Export size
+      <select id="sizeSelect">
+        <option value="1080x1080">Square · 1080 × 1080</option>
+        <option value="1080x1350">Portrait · 1080 × 1350</option>
+        <option value="1920x1080">Wide · 1920 × 1080</option>
+      </select>
+    </label>
+    <button id="exportBtn" class="primary" type="button">Export PNG</button>
+  </div>
+</header>
+
+<main class="workspace">
+  <aside class="panel controls">
+    <section>
+      <h2>Layout</h2>
+      <div class="layout-row" id="layoutRow">
+        <button type="button" data-layout="collage" class="layout-btn active">Collage ×5</button>
+        <button type="button" data-layout="spotlight" class="layout-btn">Spotlight</button>
+        <button type="button" data-layout="bands" class="layout-btn">Bands</button>
+      </div>
+    </section>
+
+    <section>
+      <h2>Title</h2>
+      <label class="field">Headline
+        <input id="titleInput" type="text" maxlength="26" value="VICE HEAT">
+      </label>
+      <label class="field">Tagline
+        <input id="subtitleInput" type="text" maxlength="48" value="A FAN-MADE POSTER TRIBUTE">
+      </label>
+      <label class="field">Title finish
+        <select id="titleStyle">
+          <option value="classic">Classic white</option>
+          <option value="sunset">Vice sunset gradient</option>
+          <option value="neon">Neon pink</option>
+        </select>
+      </label>
+    </section>
+
+    <section>
+      <h2>Vice grade</h2>
+      <label class="check"><input id="gradeToggle" type="checkbox" checked> Sunset / neon colour grade</label>
+      <label class="field">Grade strength
+        <input id="gradeRange" type="range" min="0" max="100" value="70">
+      </label>
+      <label class="check"><input id="frameToggle" type="checkbox" checked> Box-art frame</label>
+    </section>
+
+    <section>
+      <h2>Panels</h2>
+      <div id="panelList" class="panel-list"></div>
+      <div class="selected-box">
+        <p class="sel-name">Selected: <strong id="selName">Panel 1</strong></p>
+        <div class="btn-row">
+          <label class="file-btn">Load photo…
+            <input id="fileInput" type="file" accept="image/*" hidden>
+          </label>
+          <button id="fillAllBtn" type="button">Fill all panels</button>
+          <button id="resetBtn" type="button">Reset position</button>
+        </div>
+        <p class="hint">Sample photos:</p>
+        <div class="btn-row" id="sampleRow">
+          <button type="button" data-sample="pier">Pier</button>
+          <button type="button" data-sample="boulevard">Boulevard</button>
+          <button type="button" data-sample="neon">Neon Mile</button>
+          <button type="button" data-sample="boardwalk">Boardwalk</button>
+        </div>
+        <label class="field">Photo zoom
+          <input id="zoomRange" type="range" min="100" max="350" value="100">
+        </label>
+        <p class="hint">Tip: drag a photo inside its panel to reposition it; mouse-wheel zooms the selected panel. The pink dashed outline only marks your selection — exported PNGs are always clean.</p>
+      </div>
+    </section>
+  </aside>
+
+  <section class="stage">
+    <div class="canvas-wrap" id="canvasWrap">
+      <canvas id="poster" width="1080" height="1080"></canvas>
+    </div>
+    <p class="stage-hint">Everything renders locally in your browser — photos never leave this page.</p>
+  </section>
+</main>
+
+<script type="module" src="src/studio.js"></script>
+</body>
+</html>
